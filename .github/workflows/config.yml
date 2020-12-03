@@ -24,7 +24,7 @@ jobs:
       - name: Build Deployment Artifact
         run: |
           pwd
-          zip -r -j lambda_function_payload.zip ./target/handler-0.0.1-SNAPSHOT.jar
+          zip -r -j lambda_function_payload.zip ./target/handler-1.0-SNAPSHOT.jar
           pwd
           ls -al
       - name: Configure AWS Credentials
