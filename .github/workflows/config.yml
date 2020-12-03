@@ -24,6 +24,7 @@ jobs:
       - name: Build Deployment Artifact
         run: |
           pwd
+          cd target
           ls -al
           zip -r -j lambda_function_payload.zip ./target/handler-1.0-SNAPSHOT.jar
           pwd
