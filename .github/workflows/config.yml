@@ -4,6 +4,7 @@ env:
   aws-access-key-id: AKIAJ3FVA5JGS3A3H7AA
   aws-secret-access-key: 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
 
+
 on:
   push:
     branches:
@@ -24,8 +25,7 @@ jobs:
       - name: Build Deployment Artifact
         run: |
           pwd
-          ls -al
-          zip -r -j lambda.zip ./target/handler-1.0-SNAPSHOT.jar
+          zip -r -j lambda_function_payload.zip ./target/handler-1.0-SNAPSHOT.jar
           pwd
           ls -al
       - name: Configure AWS Credentials
@@ -37,9 +37,10 @@ jobs:
       - name: Upload Artifact to S3
         run: |
           pwd
-          aws s3 cp lambda.zip s3://codedeploy.lambda.prod.suheel.me/
-          echo "Artifact uploaded to S3 successfully"
+          aws s3 cp ./target/handler-1.0-SNAPSHOT.jar s3://codedeploy.lambda.prod.suheel.me --region us-east-1
       - name: Make Lambda function update call
         run: |
-          pwd
-          aws lambda update-function-code --function-name csye6225 --region us-east-1 --zip-file fileb://lambda.zip
+          aws lambda update-function-code --region us-east-1 \
+                                              --function-name csye6225 \
+                                              --s3-bucket codedeploy.lambda.prod.suheel.me \
+                                              --s3-key handler-1.0-SNAPSHOT.jar > lambda.txt
