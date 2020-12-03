@@ -2,12 +2,15 @@ package com.aws.service.handler;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.spec.PutItemSpec;
 import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
@@ -15,22 +18,20 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import com.amazonaws.services.simpleemail.model.*;
 
 import java.text.SimpleDateFormat;
-//import java.time.Instant;
 import java.util.Calendar;
 
-public class LogEvent implements RequestHandler<SNSEvent,String> {
+
+public class LogEvent implements RequestHandler<SNSEvent,Object> {
+
     static final String domain= "api.prod.suheel.me";
     static final String dynamoTable ="csye6225";
 
-    //static final String FROM = "no-reply@"+domain;
     static final String FROM = "no-reply@api.prod.suheel.me";
-    static final String CONFIGSET = "ConfigSet";
 
-    //private Logger logger = LoggerFactory.getLogger(LogEvent.class);
+
 
     DynamoDB dynamoDB;
 
-    //private String domainName= System.getenv("domainName");
 
     public String handleRequest(SNSEvent request, Context context) {
         //logger.info("logger------ inside handle request");
@@ -74,10 +75,10 @@ public class LogEvent implements RequestHandler<SNSEvent,String> {
                     String token = context.getAwsRequestId();
                     AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.defaultClient();
                     SendEmailRequest req = new SendEmailRequest().withDestination(new Destination().withToAddresses(TO))
-                            .withMessage(new Message().withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData("Please click on the below link to reset the password<br/>"+ "<p><a href='#'>https://"+domain+"/reset?email="+TO+"&token="+token+"</a></p>")))
+                            .withMessage(new Message().withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData("Please click on the below link to view the question<br/>"+ "<p><a href='#'>http://"+domain+"/questions</a></p>")))
                                     .withSubject(
                                             new Content().withCharset("UTF-8")
-                                                    .withData("Password Reset Link for webapp")))
+                                                    .withData("View Question data for Webapp")))
                             .withSource(FROM);
                     client.sendEmail(req);
                     context.getLogger().log ("Email sent!");
@@ -116,4 +117,6 @@ public class LogEvent implements RequestHandler<SNSEvent,String> {
 
 
     }
+
+
 }
