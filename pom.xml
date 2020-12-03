@@ -11,42 +11,40 @@
 <dependencies>
     <dependency>
         <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-s3</artifactId>
+        <version>1.11.754</version>
+    </dependency>
+    <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-lambda</artifactId>
+        <version>1.9.22</version>
+    </dependency>
+    <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-lambda-java-core</artifactId>
+        <version>1.2.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.amazonaws</groupId>
         <artifactId>aws-lambda-java-events</artifactId>
-        <version>3.1.0</version>
+        <version>3.6.0</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-core -->
+
     <dependency>
         <groupId>com.amazonaws</groupId>
-        <artifactId>aws-lambda-java-log4j2</artifactId>
-        <version>1.2.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ses -->
-    <dependency>
-        <groupId>com.amazonaws</groupId>
-        <artifactId>aws-java-sdk-ses</artifactId>
+        <artifactId>aws-java-sdk-sns</artifactId>
         <version>1.11.909</version>
     </dependency>
     <dependency>
         <groupId>com.amazonaws</groupId>
-        <artifactId>aws-lambda-java-log4j2</artifactId>
-        <version>1.2.0</version>
-    </dependency>
-    <dependency>
-        <groupId>com.amazonaws</groupId>
-        <artifactId>aws-java-sdk</artifactId>
-        <version>1.11.297</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>com.amazonaws</groupId>
-        <artifactId>aws-java-sdk-s3</artifactId>
-        <version>1.11.297</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb -->
-    <dependency>
-        <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-dynamodb</artifactId>
-        <version>1.11.911</version>
+        <version>1.11.909</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-ses</artifactId>
+        <version>1.11.909</version>
     </dependency>
 </dependencies>
     <build>
@@ -69,31 +67,16 @@
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
-            <version>3.2.2</version>
-            <configuration>
-                <createDependencyReducedPom>false</createDependencyReducedPom>
-            </configuration>
+            <version>3.1.1</version>
+            <configuration> </configuration>
             <executions>
                 <execution>
                     <phase>package</phase>
                     <goals>
                         <goal>shade</goal>
                     </goals>
-                    <configuration>
-                        <transformers>
-                            <transformer implementation="com.github.edwgiz.maven_shade_plugin.log4j2_cache_transformer.PluginsCacheFileTransformer">
-                            </transformer>
-                        </transformers>
-                    </configuration>
                 </execution>
             </executions>
-            <dependencies>
-                <dependency>
-                    <groupId>com.github.edwgiz</groupId>
-                    <artifactId>maven-shade-plugin.log4j2-cachefile-transformer</artifactId>
-                    <version>2.13.0</version>
-                </dependency>
-            </dependencies>
         </plugin>
     </plugins>
     </build>
