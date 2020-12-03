@@ -25,7 +25,7 @@ jobs:
         run: |
           pwd
           ls -al
-          zip -r -j lambda_function_payload.zip ./target/handler-1.0-SNAPSHOT.jar
+          zip -r -j lambda.zip ./target/handler-1.0-SNAPSHOT.jar
           pwd
           ls -al
       - name: Configure AWS Credentials
@@ -37,9 +37,9 @@ jobs:
       - name: Upload Artifact to S3
         run: |
           pwd
-          aws s3 cp lambda_function_payload.zip s3://codedeploy.lambda.prod.suheel.me/
+          aws s3 cp lambda.zip s3://codedeploy.lambda.prod.suheel.me/
           echo "Artifact uploaded to S3 successfully"
       - name: Make Lambda function update call
         run: |
           pwd
-          aws lambda update-function-code --function-name csye6225 --region us-east-1 --zip-file fileb://lambda_function_payload.zip
+          aws lambda update-function-code --function-name csye6225 --region us-east-1 --zip-file fileb://lambda.zip
