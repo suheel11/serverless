@@ -43,7 +43,9 @@ public class LogEvent implements RequestHandler<SNSEvent,Object> {
             //logger.info("logger ------ trying to connect to dynamodb");
             context.getLogger().log("trying to connect to dynamodb");
             long ttlDBValue = 0;
+            context.getLogger().log("Before init");
             init();
+            context.getLogger().log("after init");
             //long unixTime = Instant.now().getEpochSecond()+15*60;
             Table table = dynamoDB.getTable(dynamoTable);
 
