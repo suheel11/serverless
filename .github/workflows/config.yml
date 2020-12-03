@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: mvn package
+        run: mvn clean install
       - name: Build Deployment Artifact
         run: |
           pwd
