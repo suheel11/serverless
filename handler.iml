@@ -28,9 +28,9 @@
     <orderEntry type="library" name="Maven: com.amazonaws:aws-lambda-java-core:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.amazonaws:aws-lambda-java-events:3.6.0" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.6" level="project" />
-    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-sns:1.11.909" level="project" />
-    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-sqs:1.11.909" level="project" />
-    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-dynamodb:1.11.909" level="project" />
-    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-ses:1.11.909" level="project" />
+    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-sns:1.11.911" level="project" />
+    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-sqs:1.11.911" level="project" />
+    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-dynamodb:1.11.911" level="project" />
+    <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-ses:1.11.911" level="project" />
   </component>
 </module>

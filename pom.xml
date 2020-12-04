@@ -33,37 +33,22 @@
     <dependency>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-sns</artifactId>
-        <version>1.11.909</version>
+        <version>1.11.911</version>
     </dependency>
     <dependency>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-dynamodb</artifactId>
-        <version>1.11.909</version>
+        <version>1.11.911</version>
     </dependency>
 
     <dependency>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-ses</artifactId>
-        <version>1.11.909</version>
+        <version>1.11.911</version>
     </dependency>
 </dependencies>
     <build>
     <plugins>
-    <plugin>
-        <!-- Build an executable JAR -->
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-            <archive>
-                <manifest>
-                    <addClasspath>true</addClasspath>
-                    <classpathPrefix>lib/</classpathPrefix>
-                    <mainClass>com.aws.service.handler.LogEvent</mainClass>
-                </manifest>
-            </archive>
-        </configuration>
-    </plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
