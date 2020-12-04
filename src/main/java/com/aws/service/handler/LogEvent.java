@@ -65,7 +65,7 @@ public class LogEvent implements RequestHandler<SNSEvent,Object> {
 
             }
             if(item==null|| (ttlDBValue < now && ttlDBValue != 0)) {
-
+                context.getLogger().log("before itemput");
                 Item itemPut = new Item()
                         .withPrimaryKey("id", To)
                         .withString("token", context.getAwsRequestId())
