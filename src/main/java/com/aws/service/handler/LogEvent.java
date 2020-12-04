@@ -91,7 +91,7 @@ public class LogEvent implements RequestHandler<SNSEvent,Object> {
                     context.getLogger().log ("The email was not sent. Error message: "
                             + ex.getMessage());
                 }
-            //}
+            }
         }
         catch(AmazonServiceException ase){
             //logger.error("Could not complete operation");
