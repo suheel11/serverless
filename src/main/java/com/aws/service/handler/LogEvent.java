@@ -8,9 +8,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
-import com.amazonaws.services.dynamodbv2.document.spec.PutItemSpec;
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
@@ -19,6 +17,8 @@ import com.amazonaws.services.simpleemail.model.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LogEvent implements RequestHandler<SNSEvent,Object> {
@@ -52,6 +52,9 @@ public class LogEvent implements RequestHandler<SNSEvent,Object> {
 
             String To = request.getRecords().get(0).getSNS().getMessage();
             //logger.info("Request"+To);
+            Map<String,String> m = new HashMap<String, String>();
+            m.put("id",To);
+            table.putItem((Item) m);
             context.getLogger().log("Request"+To);
 
             Item item = table.getItem("id", To);
