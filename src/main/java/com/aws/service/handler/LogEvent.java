@@ -78,9 +78,10 @@ public class LogEvent implements RequestHandler<SNSEvent,Object> {
                 try {
                     String TO = request.getRecords().get(0).getSNS().getMessage();
                     String token = context.getAwsRequestId();
+                    String id=request.getRecords().get(0).getSNS().getSubject();
                     AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.defaultClient();
                     SendEmailRequest req = new SendEmailRequest().withDestination(new Destination().withToAddresses(TO))
-                            .withMessage(new Message().withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData("Please click on the below link to view the question<br/>"+ "<p><a href='#'>http://"+domain+"/questions</a></p>")))
+                            .withMessage(new Message().withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData("Please click on the below link to view the question<br/>"+ "<p><a href='#'>http://"+domain+"/v1/question/"+id+"</a></p>")))
                                     .withSubject(
                                             new Content().withCharset("UTF-8")
                                                     .withData("View Question data for Webapp")))
