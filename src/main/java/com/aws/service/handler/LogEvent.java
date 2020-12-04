@@ -52,28 +52,28 @@ public class LogEvent implements RequestHandler<SNSEvent,Object> {
 
             String To = request.getRecords().get(0).getSNS().getMessage();
             //logger.info("Request"+To);
-            Map<String,String> m = new HashMap<String, String>();
-            m.put("id",To);
-            table.putItem((Item) m);
+            //Map<String,String> m = new HashMap<String, String>();
+            //m.put("id",To);
+            //table.putItem((Item) m);
             context.getLogger().log("Request"+To);
 
-            Item item = table.getItem("id", To);
-            if (item != null) {
-                //logger.info("Checking for time stamp");
-                context.getLogger().log("Checking for timestamp");
-                ttlDBValue = item.getLong("TimeToLive");
-
-            }
-            if(item==null|| (ttlDBValue < now && ttlDBValue != 0)) {
-
-                Item itemPut = new Item()
-                        .withPrimaryKey("id", To)
-                        .withString("token", context.getAwsRequestId())
-                        .withNumber("TimeToLive", totalTTL);
-
-                //logger.info("inside email");
-                context.getLogger().log("inside email");
-                table.putItem(itemPut);
+//            Item item = table.getItem("id", To);
+//            if (item != null) {
+//                //logger.info("Checking for time stamp");
+//                context.getLogger().log("Checking for timestamp");
+//                ttlDBValue = item.getLong("TimeToLive");
+//
+//            }
+//            if(item==null|| (ttlDBValue < now && ttlDBValue != 0)) {
+//
+//                Item itemPut = new Item()
+//                        .withPrimaryKey("id", To)
+//                        .withString("token", context.getAwsRequestId())
+//                        .withNumber("TimeToLive", totalTTL);
+//
+//                //logger.info("inside email");
+//                context.getLogger().log("inside email");
+//                table.putItem(itemPut);
 
                 try {
                     String TO = request.getRecords().get(0).getSNS().getMessage();
@@ -91,7 +91,7 @@ public class LogEvent implements RequestHandler<SNSEvent,Object> {
                     context.getLogger().log ("The email was not sent. Error message: "
                             + ex.getMessage());
                 }
-            }
+            //}
         }
         catch(AmazonServiceException ase){
             //logger.error("Could not complete operation");
