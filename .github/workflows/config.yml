@@ -1,8 +1,8 @@
 name: pull request check
 env:
   AWS_REGION: us-east-1
-  aws-access-key-id: AKIAJ3FVA5JGS3A3H7AA
-  aws-secret-access-key: 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
+  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
+  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
 
 
 on:
